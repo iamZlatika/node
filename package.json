@@ -1,0 +1,23 @@
+{
+  "name": "ninja-course",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamZlatika/node.git"
+  },
+  "author": "Zlatika",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamZlatika/node/issues"
+  },
+  "homepage": "https://github.com/iamZlatika/node#readme",
+  "dependencies": {
+    "lodash": "^4.17.19"
+  }
+}
