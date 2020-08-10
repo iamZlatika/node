@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan')
 
 const app = express();
 
@@ -9,6 +10,10 @@ app.set('view engine', 'ejs');
 
 app.listen(3000);
 
+app.use(express.static('public'))
+
+app.use(morgan('dev'))
+
 
 app.get('/', (req, res) => {
   const blogs = [
@@ -17,7 +22,7 @@ app.get('/', (req, res) => {
     { title: 'How to defeat browser', snippet: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam, aut.' },
   ];
   // res.send('<p>Home Page</p>');
-  res.render('index', { title: 'Home', blogs}, );
+  res.render('index', { title: 'Home', blogs },);
 });
 
 app.get('/about', (req, res) => {
