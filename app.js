@@ -1,14 +1,34 @@
 const express = require('express');
-const morgan = require('morgan')
+const morgan = require('morgan');
+const mongoose = require('mongoose');
+const Blog = require('./models/blog')
 
 const app = express();
+
+//connect to MONGO
+const dbURI = 'mongodb+srv://nodeTester:test1234@contactkeeper.9hm5l.mongodb.net/node-tuts?retryWrites=true&w=majority';
+mongoose.connect(dbURI, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true
+})
+  .then((result) => app.listen(3000))
+  .catch((err) => console.log(err));
 
 //register view engine
 app.set('view engine', 'ejs');
 
 
+app.get('/add-blog', (req, res)=>{
+ const blog = new Blog({
+   title: 'new blog',
+   snippet: 'about my new blog',
+   body: 'more about my new blog'
+ });
+ blog.save()
+})
 
-app.listen(3000);
 
 app.use(express.static('public'))
 
