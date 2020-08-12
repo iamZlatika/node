@@ -20,30 +20,61 @@ mongoose.connect(dbURI, {
 app.set('view engine', 'ejs');
 
 
-app.get('/add-blog', (req, res)=>{
- const blog = new Blog({
-   title: 'new blog',
-   snippet: 'about my new blog',
-   body: 'more about my new blog'
- });
- blog.save()
-})
+//Getting&saving data sandbox
+// app.get('/add-blog', (req, res) => {
+//   const blog = new Blog({
+//     title: 'new blog',
+//     snippet: 'about my new blog',
+//     body: 'more about my new blog'
+//   });
+//   blog.save()
+//     .then((result) => {
+//       res.send(result)
+//     })
+//     .catch((err) => {
+//       console.log(err)
+//     });
+// });
+
+// app.get('/all-blogs', (req, res) => {
+//   Blog.find()
+//     .then((result) => {
+//       res.send(result)
+//     })
+//     .catch((err) => console.log(err))
+// })
+
+
+// app.get('/single-blog', (req, res) => {
+//   Blog.findById('5f33b962064a8a1d80eb5227')
+//     .then((result) => {
+//       res.send(result)
+//     })
+//     .catch((err) => console.log(err))
+// })
+
+
+
 
 
 app.use(express.static('public'))
-
 app.use(morgan('dev'))
 
 
 app.get('/', (req, res) => {
-  const blogs = [
-    { title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam, aut.' },
-    { title: 'Mario finds stars', snippet: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam, aut.' },
-    { title: 'How to defeat browser', snippet: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam, aut.' },
-  ];
-  // res.send('<p>Home Page</p>');
-  res.render('index', { title: 'Home', blogs },);
+ res.redirect('/blogs')
 });
+
+//blog routes
+app.get('/blogs', (req, res)=>{
+  Blog.find()
+  .then((result)=> {
+res.render('index', {title: 'All Blogs', blogs: result})
+  })
+  .catch((err)=> console.log(err))
+})
+
+
 
 app.get('/about', (req, res) => {
   // res.send('<p>About Page</p>');
