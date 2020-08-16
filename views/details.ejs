@@ -4,10 +4,16 @@
 <body>
   <%- include("./partials/nav.ejs") %>
 
-  <div class="not-found content">
-    OOPS, page not found :)
+  <div class="details content">
+    <h2><%= blog.title %></h2>
+    <div class="content">
+      <p><%= blog.body %></p>
+    </div>
+
   </div>
 
   <%- include("./partials/footer.ejs") %>
+
 </body>
+
 </html>
